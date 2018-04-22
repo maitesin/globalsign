@@ -10,6 +10,9 @@ install:
 - sudo apt-get install -qq g++-4.9
 - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9
 
+# Install Ninja
+- sudo apt-get install ninja-build
+
 # Install conan
 - pip install --user conan # Dependency manager for C/C++
 
