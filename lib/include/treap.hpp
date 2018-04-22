@@ -11,7 +11,7 @@ class Treap {
 
     bool Has(char const * word) const;
     void Add(char const * word);
-    void IncreasePriority(char const * word);
+    void IncreasePriority(char const * word, size_t count);
     char const * Top() const;
     void Pop();
     size_t Size() const;
@@ -27,8 +27,9 @@ class Treap {
 
     void BubbleUp(TreapNode * node);
     void SinkDown(TreapNode * node);
-    TreapNode * Find(char const * word) const;
+    TreapNode * Find(TreapNode * node, char const * word) const;
     void Add(TreapNode * node, char const * word, size_t priority);
+    void Pop(TreapNode * node);
 
     size_t size;
     TreapNode * root;

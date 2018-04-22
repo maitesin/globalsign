@@ -1,4 +1,6 @@
 #include "treap.hpp"
+#include <stdexcept>
+#include <cstring>
 
 namespace globalsign {
 
@@ -10,7 +12,7 @@ Treap::~Treap() {
 }
 
 bool Treap::Has(char const * word) const {
-    auto found = Find(word);
+    auto found = Find(root, word);
     return found != nullptr;
 }
 
@@ -29,13 +31,33 @@ void Treap::Add(char const * word) {
     }
 }
 
-void Treap::IncreasePriority(char const * word) {}
-char const * Treap::Top() const {}
+void Treap::Add(Treap::TreapNode * node, char const * word, size_t priority) {
+
+}
+
+void Treap::IncreasePriority(char const * word, size_t count) {
+    auto found = Find(root, word);
+    if (found == nullptr) {
+        throw std::invalid_argument("The word to increase the priority is no present in the Treap");
+    }
+
+}
+char const * Treap::Top() const {
+    if (IsEmpty()) {
+        throw std::invalid_argument("The top of an empty Treap does not exist");
+    }
+    return root->value;
+}
+
 void Treap::Pop() {
     if (!IsEmpty()) {
-        delete root;
+        Pop(root);
         size--;
     }
+}
+
+void Treap::Pop(Treap::TreapNode * node) {
+    delete node;
 }
 
 size_t Treap::Size() const {
@@ -48,12 +70,13 @@ bool Treap::IsEmpty() const {
 
 void Treap::BubbleUp(Treap::TreapNode * node) {}
 void Treap::SinkDown(Treap::TreapNode * node) {}
-Treap::TreapNode * Treap::Find(char const * word) const {
-    return nullptr;
-}
-
-void Treap::Add(Treap::TreapNode * node, char const * word, size_t priority) {
-
+Treap::TreapNode * Treap::Find(Treap::TreapNode * node, char const * word) const {
+    if (node == nullptr) return nullptr;
+    if (std::strcmp(word, node->value) == 0) {
+        return node;
+    } else {
+        return nullptr;
+    }
 }
 
 } // namespace globalsign
