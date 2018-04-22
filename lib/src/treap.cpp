@@ -29,7 +29,7 @@ void Treap::Add(char const * word) {
 }
 
 void Treap::Add(Treap::TreapNode * node, char const * word, size_t priority) {
-    if (std::strcmp(node->value, word) == -1) {
+    if (std::strcmp(word, node->value) < 0) {
         if (node->left == nullptr) {
             node->left = new TreapNode(word, priority);
             node->left->parent = node;
@@ -73,8 +73,15 @@ void Treap::Pop() {
 
 void Treap::Pop(Treap::TreapNode * node) {
     SinkDown(node);
-    delete node;
     UpdateRoot();
+    if (node->parent) {
+        if (node->parent->left == node) {
+            node->parent->left = nullptr;
+        } else {
+            node->parent->right = nullptr;
+        }
+    }
+    delete node;
 }
 
 size_t Treap::Size() const {

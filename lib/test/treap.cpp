@@ -64,6 +64,40 @@ TEST_F(TreapTest, TwoWordsIncreasePriorityOfBothAndCheckTop) {
     EXPECT_EQ(word2, treap.Top()) << "Top element in the Treap should be the one with highest priority";
 }
 
+TEST_F(TreapTest, ThreeWordIncreasePriority) {
+    char const * word1 = "Hello";
+    char const * word2 = "Wololo";
+    char const * word3 = "Animal";
+    treap.Add(word1);
+    treap.Add(word2);
+    treap.Add(word3);
+    treap.IncreasePriority(word1, 1);
+    EXPECT_EQ(word1, treap.Top()) << "Top element in the Treap should be the one with highest priority";
+    treap.IncreasePriority(word2, 2);
+    EXPECT_EQ(word2, treap.Top()) << "Top element in the Treap should be the one with highest priority";
+    treap.IncreasePriority(word3, 3);
+    EXPECT_EQ(word3, treap.Top()) << "Top element in the Treap should be the one with highest priority";
+}
+
+TEST_F(TreapTest, FourWordIncreasePriority) {
+    char const * word1 = "Hello";
+    char const * word2 = "Wololo";
+    char const * word3 = "Animal";
+    char const * word4 = "Vegetable";
+    treap.Add(word1);
+    treap.Add(word2);
+    treap.Add(word3);
+    treap.Add(word4);
+    treap.IncreasePriority(word1, 1);
+    EXPECT_EQ(word1, treap.Top()) << "Top element in the Treap should be the one with highest priority";
+    treap.IncreasePriority(word2, 2);
+    EXPECT_EQ(word2, treap.Top()) << "Top element in the Treap should be the one with highest priority";
+    treap.IncreasePriority(word3, 3);
+    EXPECT_EQ(word3, treap.Top()) << "Top element in the Treap should be the one with highest priority";
+    treap.IncreasePriority(word4, 4);
+    EXPECT_EQ(word4, treap.Top()) << "Top element in the Treap should be the one with highest priority";
+}
+
 TEST_F(TreapTest, FailToIncreasePriorityOfAWordThatIsNotPresent) {
     char const * word = "Hello";
     EXPECT_THROW(treap.IncreasePriority(word, 1), std::invalid_argument) << "Increase the priority of a word that is not present should fail";
