@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <stdexcept>
 
 namespace globalsign {
     
@@ -23,6 +24,34 @@ class Treap {
         size_t priority;
         TreapNode * left, * right;
         TreapNode * parent;
+
+        TreapNode(char const * word, size_t priority): value(word), priority(priority), left(nullptr), right(nullptr), parent(nullptr) {}
+        void RotateRight() {
+            if (left == nullptr) {
+                std::invalid_argument("Imposible to rotate right if left is null");
+            }
+            // Parents
+            left->parent = parent;
+            parent = left;
+
+            // Children
+            auto old_left = left;
+            left = left->right;
+            old_left->right = this;
+        }
+        void RotateLeft() {
+            if (right == nullptr) {
+                std::invalid_argument("Imposible to rotate left if right is null");
+            }
+            // Parents
+            right->parent = parent;
+            parent = right;
+
+            // Children
+            auto old_right = right;
+            right = right->left;
+            old_right->left = this;
+        }
     };
 
     void BubbleUp(TreapNode * node);
@@ -30,6 +59,7 @@ class Treap {
     TreapNode * Find(TreapNode * node, char const * word) const;
     void Add(TreapNode * node, char const * word, size_t priority);
     void Pop(TreapNode * node);
+    void UpdateRoot();
 
     size_t size;
     TreapNode * root;

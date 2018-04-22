@@ -18,6 +18,12 @@ TEST_F(TreapTest, AddSingleWord) {
     EXPECT_EQ(1, treap.Size()) << "Size for a Treap with a single element should be one";
 }
 
+TEST_F(TreapTest, TopSingleWord) {
+    char const * word = "Hello";
+    treap.Add(word);
+    EXPECT_EQ(word, treap.Top()) << "Top a Treap with a single element should return that element";
+}
+
 TEST_F(TreapTest, AddSingleWordAndIncreaseThePriority) {
     char const * word = "Hello";
     treap.Add(word);
@@ -29,6 +35,14 @@ TEST_F(TreapTest, FailToAddTwiceTheSameWord) {
     char const * word = "Hello";
     treap.Add(word);
     EXPECT_THROW(treap.Add(word), std::invalid_argument) << "Adding twice the same word should fail";
+}
+
+TEST_F(TreapTest, AddTwoWords) {
+    char const * word1 = "Hello";
+    char const * word2 = "Wololo";
+    treap.Add(word1);
+    treap.Add(word2);
+    EXPECT_EQ(2, treap.Size()) << "Size for a Treap with two elements should be two";
 }
 
 TEST_F(TreapTest, FailToIncreasePriorityOfAWordThatIsNotPresent) {

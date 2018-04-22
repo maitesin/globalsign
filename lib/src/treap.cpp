@@ -20,19 +20,32 @@ void Treap::Add(char const * word) {
     if (Has(word)) {
         throw std::invalid_argument("The word to be added is already present in the Treap");
     }
-    size++;
     if (root == nullptr) {
-        root = new TreapNode();
-        root->value = word;
-        root->priority = 1;
-        root->parent = root->left = root->right = nullptr;
+        root = new TreapNode(word, 1);
     } else {
         Add(root, word, 1);
     }
+    size++;
 }
 
 void Treap::Add(Treap::TreapNode * node, char const * word, size_t priority) {
-
+    if (std::strcmp(node->value, word) == -1) {
+        if (node->left == nullptr) {
+            node->left = new TreapNode(word, priority);
+            node->left->parent = node;
+            BubbleUp(node->left);
+        } else {
+            Add(node->left, word, priority);
+        }
+    } else {
+        if (node->right == nullptr) {
+            node->right = new TreapNode(word, priority);
+            node->right->parent = node;
+            BubbleUp(node->right);
+        } else {
+            Add(node->right, word, priority);
+        }
+    }
 }
 
 void Treap::IncreasePriority(char const * word, size_t count) {
@@ -57,7 +70,9 @@ void Treap::Pop() {
 }
 
 void Treap::Pop(Treap::TreapNode * node) {
+    SinkDown(node);
     delete node;
+    UpdateRoot();
 }
 
 size_t Treap::Size() const {
@@ -69,13 +84,38 @@ bool Treap::IsEmpty() const {
 }
 
 void Treap::BubbleUp(Treap::TreapNode * node) {}
-void Treap::SinkDown(Treap::TreapNode * node) {}
+void Treap::SinkDown(Treap::TreapNode * node) {
+    if (node != nullptr) {
+        if (node->left != nullptr && node->right != nullptr) {
+            if (node->left->priority < node->right->priority) {
+                node->RotateLeft();
+            } else {
+                node->RotateRight();
+            }
+        }
+        else if (node->left != nullptr) {
+            node->RotateRight();
+        } else if (node->right != nullptr) {
+            node->RotateLeft();
+        } else {
+            return;
+        }
+    }
+    SinkDown(node);
+}
+
 Treap::TreapNode * Treap::Find(Treap::TreapNode * node, char const * word) const {
     if (node == nullptr) return nullptr;
     if (std::strcmp(word, node->value) == 0) {
         return node;
     } else {
         return nullptr;
+    }
+}
+
+void Treap::UpdateRoot() {
+    while(root->parent != nullptr) {
+        root = root->parent;
     }
 }
 
