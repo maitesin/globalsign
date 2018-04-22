@@ -1,7 +1,6 @@
 #pragma once
 
-#include<iostream>
-#include<memory>
+#include <iostream>
 
 namespace globalsign {
     
@@ -22,16 +21,17 @@ class Treap {
     struct TreapNode {
         char const * value;
         size_t priority;
-        std::unique_ptr<TreapNode> left, right;
-        std::weak_ptr<TreapNode> parent;
+        TreapNode * left, * right;
+        TreapNode * parent;
     };
 
-    void BubbleUp(std::unique_ptr<TreapNode> & node);
-    void SinkDown(std::unique_ptr<TreapNode> & node);
-    std::unique_ptr<TreapNode> & Find(char const * word) const;
+    void BubbleUp(TreapNode * node);
+    void SinkDown(TreapNode * node);
+    TreapNode * Find(char const * word) const;
+    void Add(TreapNode * node, char const * word, size_t priority);
 
     size_t size;
-    std::unique_ptr<TreapNode> root;
+    TreapNode * root;
 }; // class Heap
 
 } // namespace globalsign
