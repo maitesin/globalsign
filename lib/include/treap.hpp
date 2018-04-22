@@ -26,6 +26,7 @@ class Treap {
         TreapNode * parent;
 
         TreapNode(char const * word, size_t priority): value(word), priority(priority), left(nullptr), right(nullptr), parent(nullptr) {}
+        
         void RotateRight() {
             if (left == nullptr) {
                 std::invalid_argument("Imposible to rotate right if left is null");
@@ -33,12 +34,17 @@ class Treap {
             // Parents
             left->parent = parent;
             parent = left;
+            if (parent) 
+                parent->left = left;
 
             // Children
             auto old_left = left;
             left = left->right;
             old_left->right = this;
+            if (left)
+                left->parent = this;
         }
+
         void RotateLeft() {
             if (right == nullptr) {
                 std::invalid_argument("Imposible to rotate left if right is null");
@@ -46,11 +52,15 @@ class Treap {
             // Parents
             right->parent = parent;
             parent = right;
+            if (parent) 
+                parent->right = right;
 
             // Children
             auto old_right = right;
             right = right->left;
             old_right->left = this;
+            if (right)
+                right->parent = this;
         }
     };
 
