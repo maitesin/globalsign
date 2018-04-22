@@ -1,7 +1,7 @@
 project(GlobalSign)
 cmake_minimum_required(VERSION 2.8)
 
-include(conanbuildinfo.cmake)
+include(../conanbuildinfo.cmake)
 conan_basic_setup()
 
 enable_testing()
