@@ -1,6 +1,6 @@
 language: cpp
-compiler:
-- gcc
+compiler: gcc
+dist: trusty
 
 install:
 # Upgrade GCC
@@ -18,7 +18,7 @@ install:
 script:
 - mkdir build
 - cd build
-- conan install .. -s compiler.libcxx=libstdc++11
+- conan install ..
 - cmake .. -GNinja
 - ninja
 - ninja test
