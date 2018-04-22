@@ -13,7 +13,9 @@ void Treap::Pop() {}
 size_t Treap::Size() const {
     return size;
 }
-bool Treap::IsEmpty() const {}
+bool Treap::IsEmpty() const {
+    return size == 0;
+}
 
 void Treap::BubbleUp(std::unique_ptr<Treap::TreapNode> & node) {}
 void Treap::SinkDown(std::unique_ptr<Treap::TreapNode> & node) {}

@@ -1,4 +1,4 @@
-#include <string>
+#include <iostream>
 #include <gtest/gtest.h>
 #include "treap.hpp"
 
