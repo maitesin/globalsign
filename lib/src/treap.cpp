@@ -53,7 +53,9 @@ void Treap::IncreasePriority(char const * word, size_t count) {
     if (found == nullptr) {
         throw std::invalid_argument("The word to increase the priority is no present in the Treap");
     }
-
+    found->priority += count;
+    BubbleUp(found);
+    UpdateRoot();
 }
 char const * Treap::Top() const {
     if (IsEmpty()) {
@@ -83,7 +85,18 @@ bool Treap::IsEmpty() const {
     return size == 0;
 }
 
-void Treap::BubbleUp(Treap::TreapNode * node) {}
+void Treap::BubbleUp(Treap::TreapNode * node) {
+    if (node != nullptr && node->parent != nullptr) {
+        if (node->priority > node->parent->priority) {
+            if (node->parent->left == node) {
+                node->parent->RotateRight();
+            } else {
+                node->parent->RotateLeft();
+            }
+            BubbleUp(node);
+        }
+    }
+}
 void Treap::SinkDown(Treap::TreapNode * node) {
     if (node != nullptr) {
         if (node->left != nullptr && node->right != nullptr) {
@@ -108,8 +121,10 @@ Treap::TreapNode * Treap::Find(Treap::TreapNode * node, char const * word) const
     if (node == nullptr) return nullptr;
     if (std::strcmp(word, node->value) == 0) {
         return node;
+    } else if (std::strcmp(word, node->value) < 0) {
+        return Find(node->left, word);
     } else {
-        return nullptr;
+        return Find(node->right, word);
     }
 }
 

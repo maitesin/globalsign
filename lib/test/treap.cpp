@@ -45,6 +45,25 @@ TEST_F(TreapTest, AddTwoWords) {
     EXPECT_EQ(2, treap.Size()) << "Size for a Treap with two elements should be two";
 }
 
+TEST_F(TreapTest, TwoWordsIncreasePriorityOfOneAndCheckTop) {
+    char const * word1 = "Hello";
+    char const * word2 = "Wololo";
+    treap.Add(word1);
+    treap.Add(word2);
+    treap.IncreasePriority(word1, 1);
+    EXPECT_EQ(word1, treap.Top()) << "Top element in the Treap should be the one with highest priority";
+}
+
+TEST_F(TreapTest, TwoWordsIncreasePriorityOfBothAndCheckTop) {
+    char const * word1 = "Hello";
+    char const * word2 = "Wololo";
+    treap.Add(word1);
+    treap.Add(word2);
+    treap.IncreasePriority(word1, 1);
+    treap.IncreasePriority(word2, 2);
+    EXPECT_EQ(word2, treap.Top()) << "Top element in the Treap should be the one with highest priority";
+}
+
 TEST_F(TreapTest, FailToIncreasePriorityOfAWordThatIsNotPresent) {
     char const * word = "Hello";
     EXPECT_THROW(treap.IncreasePriority(word, 1), std::invalid_argument) << "Increase the priority of a word that is not present should fail";
