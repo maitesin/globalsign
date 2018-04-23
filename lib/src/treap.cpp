@@ -104,6 +104,7 @@ void Treap::BubbleUp(Treap::TreapNode * node) {
         }
     }
 }
+
 void Treap::SinkDown(Treap::TreapNode * node) {
     if (node != nullptr) {
         if (node->left != nullptr && node->right != nullptr) {
