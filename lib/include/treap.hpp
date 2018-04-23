@@ -32,6 +32,13 @@ class Treap {
                 std::invalid_argument("Imposible to rotate right if left is null");
             }
             // Parents
+            if (parent) {
+                if (parent->left == this)  {
+                    parent->left = left;
+                } else if (parent->right == this) {
+                    parent->right = left;
+                }
+            }
             left->parent = parent;
             parent = left;
 
@@ -48,6 +55,13 @@ class Treap {
                 std::invalid_argument("Imposible to rotate left if right is null");
             }
             // Parents
+            if (parent) {
+                if (parent->left == this)  {
+                    parent->left = right;
+                } else if (parent->right == this) {
+                    parent->right = right;
+                }
+            }
             right->parent = parent;
             parent = right;
 

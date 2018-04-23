@@ -97,14 +97,8 @@ void Treap::BubbleUp(Treap::TreapNode * node) {
         if (node->priority > node->parent->priority) {
             if (node->parent->left == node) {
                 node->parent->RotateRight();
-                if (node->parent != nullptr) {
-                    node->parent->left = node;
-                }
             } else {
                 node->parent->RotateLeft();
-                if (node->parent != nullptr) {
-                    node->parent->right = node;
-                }
             }
             BubbleUp(node);
         }
