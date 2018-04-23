@@ -34,8 +34,6 @@ class Treap {
             // Parents
             left->parent = parent;
             parent = left;
-            if (parent) 
-                parent->left = left;
 
             // Children
             auto old_left = left;
@@ -52,8 +50,6 @@ class Treap {
             // Parents
             right->parent = parent;
             parent = right;
-            if (parent) 
-                parent->right = right;
 
             // Children
             auto old_right = right;

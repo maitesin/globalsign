@@ -73,7 +73,6 @@ void Treap::Pop() {
 
 void Treap::Pop(Treap::TreapNode * node) {
     SinkDown(node);
-    UpdateRoot();
     if (node->parent) {
         if (node->parent->left == node) {
             node->parent->left = nullptr;
@@ -81,6 +80,7 @@ void Treap::Pop(Treap::TreapNode * node) {
             node->parent->right = nullptr;
         }
     }
+    UpdateRoot();
     delete node;
 }
 
@@ -97,8 +97,14 @@ void Treap::BubbleUp(Treap::TreapNode * node) {
         if (node->priority > node->parent->priority) {
             if (node->parent->left == node) {
                 node->parent->RotateRight();
+                if (node->parent != nullptr) {
+                    node->parent->left = node;
+                }
             } else {
                 node->parent->RotateLeft();
+                if (node->parent != nullptr) {
+                    node->parent->right = node;
+                }
             }
             BubbleUp(node);
         }
