@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <cstring>
+#include <utility>
 
 namespace globalsign {
     
@@ -14,7 +15,7 @@ class Treap {
     bool Has(char const * word) const;
     void Add(char const * word);
     void IncreasePriority(char const * word, size_t count);
-    char const * Top() const;
+    std::pair<size_t, char const *> Top() const;
     void Pop();
     size_t Size() const;
     bool IsEmpty() const;

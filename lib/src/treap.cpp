@@ -57,11 +57,11 @@ void Treap::IncreasePriority(char const * word, size_t count) {
     BubbleUp(found);
     UpdateRoot();
 }
-char const * Treap::Top() const {
+std::pair<size_t, char const *> Treap::Top() const {
     if (IsEmpty()) {
         throw std::invalid_argument("The top of an empty Treap does not exist");
     }
-    return root->value;
+    return std::make_pair(root->priority, root->value);
 }
 
 void Treap::Pop() {

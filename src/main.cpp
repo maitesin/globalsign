@@ -29,18 +29,21 @@
     while (file >> only_string) {
         std::transform(only_string.begin(), only_string.end(), only_string.begin(), ::tolower);
         char const * str = only_string.c_str();
-        std::cout << "Word: " << str << std::endl;
         if (!treap.Has(str)) {
-            std::cout << "New word!" << std::endl;
             treap.Add(str);
         } else {
-            std::cout << "Increase!" << std::endl;
             treap.IncreasePriority(str, 1);
         }
     }
     file.close();
 
-    std::cout << "Total size of the Treap: " << treap.Size() << std::endl;
+    size_t count = 20;
+    while (treap.Size() > 0 && count != 0) {
+        auto top = treap.Top();
+        std::cout << top.first << " " << top.second << std::endl;
+        treap.Pop();
+        count--;
+    }
 
     return 0;
  }

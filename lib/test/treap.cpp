@@ -22,7 +22,7 @@ TEST_F(TreapTest, AddSingleWord) {
 TEST_F(TreapTest, TopSingleWord) {
     char const * word = "Hello";
     treap.Add(word);
-    EXPECT_TRUE(std::strcmp(word, treap.Top()) == 0) << "Top a Treap with a single element should return that element";
+    EXPECT_TRUE(std::strcmp(word, treap.Top().second) == 0) << "Top a Treap with a single element should return that element";
 }
 
 TEST_F(TreapTest, AddSingleWordAndIncreaseThePriority) {
@@ -63,7 +63,7 @@ TEST_F(TreapTest, TwoWordsIncreasePriorityOfOneAndCheckTop) {
     treap.Add(word1);
     treap.Add(word2);
     treap.IncreasePriority(word1, 1);
-    EXPECT_TRUE(std::strcmp(word1, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word1, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, TwoWordsIncreasePriorityOfBothAndCheckTop) {
@@ -73,7 +73,7 @@ TEST_F(TreapTest, TwoWordsIncreasePriorityOfBothAndCheckTop) {
     treap.Add(word2);
     treap.IncreasePriority(word1, 1);
     treap.IncreasePriority(word2, 2);
-    EXPECT_TRUE(std::strcmp(word2, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word2, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, ThreeWordIncreasePriority) {
@@ -86,7 +86,7 @@ TEST_F(TreapTest, ThreeWordIncreasePriority) {
     treap.IncreasePriority(word1, 1);
     treap.IncreasePriority(word2, 2);
     treap.IncreasePriority(word3, 3);
-    EXPECT_TRUE(std::strcmp(word3, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word3, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, FourWordIncreasePriority) {
@@ -102,7 +102,7 @@ TEST_F(TreapTest, FourWordIncreasePriority) {
     treap.IncreasePriority(word2, 2);
     treap.IncreasePriority(word3, 3);
     treap.IncreasePriority(word4, 4);
-    EXPECT_TRUE(std::strcmp(word4, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word4, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, FiveWordIncreasePriority) {
@@ -121,7 +121,7 @@ TEST_F(TreapTest, FiveWordIncreasePriority) {
     treap.IncreasePriority(word3, 3);
     treap.IncreasePriority(word4, 4);
     treap.IncreasePriority(word5, 5);
-    EXPECT_TRUE(std::strcmp(word5, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word5, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, SixWordIncreasePriority) {
@@ -143,7 +143,7 @@ TEST_F(TreapTest, SixWordIncreasePriority) {
     treap.IncreasePriority(word4, 4);
     treap.IncreasePriority(word5, 5);
     treap.IncreasePriority(word6, 6);
-    EXPECT_TRUE(std::strcmp(word6, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word6, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, SevenWordIncreasePriority) {
@@ -168,7 +168,7 @@ TEST_F(TreapTest, SevenWordIncreasePriority) {
     treap.IncreasePriority(word5, 5);
     treap.IncreasePriority(word6, 6);
     treap.IncreasePriority(word7, 7);
-    EXPECT_TRUE(std::strcmp(word7, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word7, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, EightWordIncreasePriority) {
@@ -196,7 +196,7 @@ TEST_F(TreapTest, EightWordIncreasePriority) {
     treap.IncreasePriority(word6, 6);
     treap.IncreasePriority(word7, 7);
     treap.IncreasePriority(word8, 8);
-    EXPECT_TRUE(std::strcmp(word8, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word8, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, NineWordIncreasePriority) {
@@ -227,7 +227,7 @@ TEST_F(TreapTest, NineWordIncreasePriority) {
     treap.IncreasePriority(word7, 7);
     treap.IncreasePriority(word8, 8);
     treap.IncreasePriority(word9, 9);
-    EXPECT_TRUE(std::strcmp(word9, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word9, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, TenWordIncreasePriority) {
@@ -261,7 +261,7 @@ TEST_F(TreapTest, TenWordIncreasePriority) {
     treap.IncreasePriority(word8, 8);
     treap.IncreasePriority(word9, 9);
     treap.IncreasePriority(word10, 10);
-    EXPECT_TRUE(std::strcmp(word10, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word10, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, ElevenWordIncreasePriority) {
@@ -298,7 +298,7 @@ TEST_F(TreapTest, ElevenWordIncreasePriority) {
     treap.IncreasePriority(word9, 9);
     treap.IncreasePriority(word10, 10);
     treap.IncreasePriority(word11, 11);
-    EXPECT_TRUE(std::strcmp(word11, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word11, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, TwelveWordIncreasePriority) {
@@ -338,7 +338,7 @@ TEST_F(TreapTest, TwelveWordIncreasePriority) {
     treap.IncreasePriority(word10, 10);
     treap.IncreasePriority(word11, 11);
     treap.IncreasePriority(word12, 12);
-    EXPECT_TRUE(std::strcmp(word12, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word12, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, ThirdteenWordIncreasePriority) {
@@ -381,7 +381,7 @@ TEST_F(TreapTest, ThirdteenWordIncreasePriority) {
     treap.IncreasePriority(word11, 11);
     treap.IncreasePriority(word12, 12);
     treap.IncreasePriority(word13, 13);
-    EXPECT_TRUE(std::strcmp(word13, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word13, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, FourteenWordIncreasePriority) {
@@ -427,7 +427,7 @@ TEST_F(TreapTest, FourteenWordIncreasePriority) {
     treap.IncreasePriority(word12, 12);
     treap.IncreasePriority(word13, 13);
     treap.IncreasePriority(word14, 14);
-    EXPECT_TRUE(std::strcmp(word14, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word14, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, FiveteenWordIncreasePriority) {
@@ -476,7 +476,7 @@ TEST_F(TreapTest, FiveteenWordIncreasePriority) {
     treap.IncreasePriority(word13, 13);
     treap.IncreasePriority(word14, 14);
     treap.IncreasePriority(word15, 15);
-    EXPECT_TRUE(std::strcmp(word15, treap.Top()) == 0) << "Top element in the Treap should be the one with highest priority";
+    EXPECT_TRUE(std::strcmp(word15, treap.Top().second) == 0) << "Top element in the Treap should be the one with highest priority";
 }
 
 TEST_F(TreapTest, FailToIncreasePriorityOfAWordThatIsNotPresent) {
@@ -485,7 +485,7 @@ TEST_F(TreapTest, FailToIncreasePriorityOfAWordThatIsNotPresent) {
 }
 
 TEST_F(TreapTest, FailToCallTopWhenEmpty) {
-    EXPECT_THROW(treap.Top(), std::invalid_argument) << "Calling top in an empty Treap should fail";
+    EXPECT_THROW(treap.Top().second, std::invalid_argument) << "Calling top in an empty Treap should fail";
 }
 
 int main(int argc, char *argv[]) {
