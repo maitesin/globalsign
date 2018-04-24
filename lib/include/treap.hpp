@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <cstring>
 
 namespace globalsign {
     
@@ -20,12 +21,19 @@ class Treap {
 
     private:
     struct TreapNode {
-        char const * value;
+        char * value;
         size_t priority;
         TreapNode * left, * right;
         TreapNode * parent;
 
-        TreapNode(char const * word, size_t priority): value(word), priority(priority), left(nullptr), right(nullptr), parent(nullptr) {}
+        TreapNode(char const * word, size_t priority): priority(priority), left(nullptr), right(nullptr), parent(nullptr) {
+            value = (char *)malloc(std::strlen(word) + 1);
+            std::strcpy(value, word);
+        }
+
+        ~TreapNode() {
+            free(value);
+        }
         
         void RotateRight() {
             if (left == nullptr) {
