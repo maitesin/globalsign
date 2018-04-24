@@ -45,6 +45,17 @@ TEST_F(TreapTest, AddTwoWords) {
     EXPECT_EQ(2, treap.Size()) << "Size for a Treap with two elements should be two";
 }
 
+TEST_F(TreapTest, HasMethod) {
+    char const * word1 = "Hello";
+    char const * word2 = "Wololo";
+    char const * no_found = "Another";
+    treap.Add(word1);
+    treap.Add(word2);
+    EXPECT_TRUE(treap.Has(word1)) << "Added word should be marked as present";
+    EXPECT_TRUE(treap.Has(word2)) << "Added word should be marked as present";
+    EXPECT_FALSE(treap.Has(no_found)) << "Non added word should never be marked as present";
+}
+
 TEST_F(TreapTest, TwoWordsIncreasePriorityOfOneAndCheckTop) {
     char const * word1 = "Hello";
     char const * word2 = "Wololo";
